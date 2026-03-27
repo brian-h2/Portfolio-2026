@@ -8,13 +8,13 @@ export function Footer() {
               <span className="text-white">B</span>
             </div>
             <div>
-              <div className="text-sm text-neutral-900">Brian</div>
-              <div className="text-xs text-neutral-500">Full Stack & AI Developer</div>
+              <div className="text-sm text-neutral-200">Brian</div>
+              <div className="text-xs text-neutral-200">Full Stack & AI Developer</div>
             </div>
           </div>
 
-          <p className="text-sm text-neutral-500">
-            © 2024 Brian. Todos los derechos reservados.
+          <p className="text-sm text-neutral-200">
+            © 2026 Brian. Todos los derechos reservados.
           </p>
         </div>
       </div>
