@@ -8,6 +8,10 @@ export function Header() {
     }
   };
 
+  const handleDownload = () => {
+    window.open("/public/cv.pdf", "_blank");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/20 shadow-sm">
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
@@ -50,7 +54,11 @@ export function Header() {
           </button>
         </nav>
 
-        <button className="flex items-center gap-2 px-5 py-2.5 gradient-accent text-white text-sm rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-200">
+        <button 
+        className="flex items-center gap-2 px-5 py-2.5 gradient-accent text-white text-sm rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-200"
+        onClick={handleDownload}
+        >
+        
           <Download className="w-4 h-4" />
           Descargar CV
         </button>
