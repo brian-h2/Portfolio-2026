@@ -9,7 +9,7 @@ export function Header() {
   };
 
   const handleDownload = () => {
-    window.open("/public/cv.pdf", "_blank");
+    window.open("/cv.pdf", "_blank");
   };
 
   return (
@@ -21,7 +21,7 @@ export function Header() {
           <span className="text-white text-sm text-slate-50">Full Stack & AI Developer</span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-1 bg-neutral-100/80 rounded-2xl p-1.5">
+        <nav className="hidden md:flex items-center gap-1 mr-14 bg-neutral-100 rounded-2xl p-1.5">
           <button
             onClick={() => scrollToSection('about')}
             className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
