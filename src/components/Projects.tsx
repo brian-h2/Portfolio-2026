@@ -33,6 +33,14 @@ const projects = [
     impact: 'Optimización en la distribución de recursos y gestión solidaria',
     demo: 'https://sistema-modular-de-ventas-avaporu.vercel.app/login',
     code: 'https://github.com/brian-h2/Sistema-modular-de-ventas-AVAPORU',
+  },
+   {
+    name: 'Mecanic Saas',
+    description: 'Web que permite a los talleres mecánicos gestionar sus servicios, clientes y llevar al day los registros de manera eficiente, con una interfaz intuitiva y funcionalidades clave para optimizar la operación diaria.',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'React'],
+    impact: 'Agilizar y optimizar la gestión de talleres mecánicos, mejorando la experiencia tanto para el negocio como para los clientes.',
+    demo: 'https://mecanicsaas.vercel.app/',
+    code: 'https://github.com/fmbpartnersorg/mecanicsaas',
   }
 ];
 
