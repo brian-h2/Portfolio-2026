@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,8 @@
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --border: 240 5% 85%;
+    --accent: #00d4aa;
+    --accent-glow: rgba(0, 212, 170, 0.3);
   }
 }
 @layer base {
@@ -16,7 +20,7 @@
 
   body {
     @apply bg-white text-neutral-900 antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
 
   h1 {
@@ -154,3 +158,184 @@
 .anim-delay-300 { animation-delay: 300ms; }
 .anim-delay-400 { animation-delay: 400ms; }
 .anim-delay-500 { animation-delay: 500ms; }
+
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #00d4aa;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(0, 212, 170, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+/* =============================================
+   DOT GRID BACKGROUND
+   ============================================= */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00d4aa, #7c3aed);
+  z-index: 9999;
+  transform-origin: left;
+  transition: transform 0.1s linear;
+}
+
+/* =============================================
+   ACCENT COLOR UTILITIES
+   ============================================= */
+.text-accent { color: #00d4aa; }
+.bg-accent { background-color: #00d4aa; }
+.border-accent { border-color: #00d4aa; }
+.glow-accent { box-shadow: 0 0 20px rgba(0, 212, 170, 0.3); }
+
+.gradient-accent {
+  background: linear-gradient(135deg, #00d4aa 0%, #0891b2 100%);
+}
+
+.gradient-accent-purple {
+  background: linear-gradient(135deg, #00d4aa 0%, #7c3aed 100%);
+}
+
+/* =============================================
+   GLASS EFFECT
+   ============================================= */
+.glass {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* =============================================
+   SECTION ALTERNATING BACKGROUNDS
+   ============================================= */
+.section-alt {
+  background: rgba(255,255,255,0.02);
+}
+
+/* =============================================
+   TECH BADGE
+   ============================================= */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.4);
+  color: #00d4aa;
+}
+
+/* =============================================
+   PROJECT CARD
+   ============================================= */
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(0, 212, 170, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(0, 212, 170, 0.1);
+}
+
+/* =============================================
+   SKILL TILE
+   ============================================= */
+.skill-tile {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.25s ease;
+}
+
+.skill-tile:hover {
+  background: rgba(0, 212, 170, 0.08);
+  border-color: rgba(0, 212, 170, 0.35);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   AVATAR BLOB
+   ============================================= */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%       { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75%       { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+}
+
+.blob-shape {
+  animation: blobMorph 8s ease-in-out infinite;
+}
+
+/* =============================================
+   TERMINAL DECORATION
+   ============================================= */
+.terminal-line::before {
+  content: '> ';
+  color: #00d4aa;
+  font-family: 'Space Grotesk', monospace;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #00d4aa;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}

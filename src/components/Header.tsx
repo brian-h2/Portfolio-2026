@@ -1,66 +1,65 @@
 import { Download } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export function Header() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  const [scrolled, setScrolled] = useState(false);
 
-  const handleDownload = () => {
-    window.open("/cv.pdf", "_blank");
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/20 shadow-sm">
-      <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-lg text-white">Brian</span>
-          <span className="text-neutral-300">•</span>
-          <span className="text-white text-sm text-slate-50">Full Stack & AI Developer</span>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'glass border-b border-white/10 shadow-lg shadow-black/20'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg gradient-accent flex items-center justify-center">
+            <span className="text-white font-bold text-sm">B</span>
+          </div>
+          <span className="text-white font-semibold">Brian</span>
+          <span className="text-neutral-600 hidden sm:inline">·</span>
+          <span className="text-neutral-400 text-sm hidden sm:inline">Full Stack & AI</span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-1 mr-14 bg-neutral-100 rounded-2xl p-1.5">
-          <button
-            onClick={() => scrollToSection('about')}
-            className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
-          >
-            Sobre mí
-          </button>
-          <button
-            onClick={() => scrollToSection('projects')}
-            className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
-          >
-            Proyectos
-          </button>
-          <button
-            onClick={() => scrollToSection('skills')}
-            className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => scrollToSection('experience')}
-            className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
-          >
-            Experiencia
-          </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="text-sm text-neutral-800 hover:text-neutral-900 hover:bg-white px-4 py-2 rounded-xl transition-all duration-200"
-          >
-            Contacto
-          </button>
+        {/* Nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {[
+            { label: 'Sobre mí', id: 'about' },
+            { label: 'Proyectos', id: 'projects' },
+            { label: 'Skills', id: 'skills' },
+            { label: 'Experiencia', id: 'experience' },
+            { label: 'Contacto', id: 'contact' },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="text-sm text-neutral-400 hover:text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
+            >
+              {item.label}
+            </button>
+          ))}
         </nav>
 
-        <button 
-        className="flex items-center gap-2 px-5 py-2.5 gradient-accent text-white text-sm rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-200"
-        onClick={handleDownload}
+        {/* CTA */}
+        <button
+          onClick={() => window.open('/cv.pdf', '_blank')}
+          className="flex items-center gap-2 px-4 py-2 gradient-accent text-white text-sm font-medium rounded-xl hover:opacity-90 hover:scale-105 transition-all duration-200"
         >
-        
           <Download className="w-4 h-4" />
-          Descargar CV
+          CV
         </button>
       </div>
     </header>

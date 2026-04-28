@@ -1,61 +1,63 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+const stats = [
+  { value: '+2', label: 'Años de experiencia' },
+  { value: '+7', label: 'Proyectos completados' },
+  { value: '100%', label: 'Comprometido' },
+];
+
 export function About() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
   const { ref: textRef, isVisible: textVisible } = useScrollAnimation();
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   return (
-    <section id="about" className="py-32 px-8 relative overflow-hidden">
-      <div className="absolute"></div>
+    <section id="about" className="py-32 px-8 section-alt relative overflow-hidden">
+      {/* Ambient */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-teal-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white backdrop-blur-sm rounded-[2.5rem] border border-white/50 p-14 shadow-2xl">
 
-            {/* Heading */}
-            <div
-              ref={headingRef as React.RefObject<HTMLDivElement>}
-              className={`mb-8 anim-slide-left ${headingVisible ? 'is-visible' : ''}`}
-            >
-              <h2 className="mb-3">Sobre mí</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"></div>
-            </div>
+          {/* Heading */}
+          <div
+            ref={headingRef as React.RefObject<HTMLDivElement>}
+            className={`mb-10 anim-slide-left ${headingVisible ? 'is-visible' : ''}`}
+          >
+            <h2 className="text-white text-5xl font-bold mb-3">Sobre mí</h2>
+            <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-violet-500 rounded-full" />
+          </div>
 
-            {/* Text content */}
-            <div
-              ref={textRef as React.RefObject<HTMLDivElement>}
-              className={`space-y-6 anim-fade-up anim-delay-150 ${textVisible ? 'is-visible' : ''}`}
-            >
-              <p className="text-lg leading-relaxed">
-                Actualmente participo activamente en proyectos donde mi objetivo es desarrollar soluciones tecnologicas que no solo cumplan con las expectativas, sino que las superen. Desde 2022 que me
-                encuentro inmerso en el mundo del software, donde gran esfuerzo y dedicacion fui y soy empleado en Traditum, donde aplico mis conocimientos en proyectos reales y en
-                mis tiempos libres le dedico a desarrollos personales y clientes freelance.
-              </p>
-              <p className="text-lg leading-relaxed">
-                Busco continuamente nuevos desafíos que me permitan crecer profesionalmente mientras aporto resultados
-                concretos y medibles en cada proyecto.
-              </p>
-            </div>
+          {/* Text */}
+          <div
+            ref={textRef as React.RefObject<HTMLDivElement>}
+            className={`space-y-5 anim-fade-up anim-delay-150 ${textVisible ? 'is-visible' : ''}`}
+          >
+            <p className="text-lg text-neutral-300 leading-relaxed">
+              Desde 2022 inmerso en el mundo del software, con gran esfuerzo y dedicación.
+              Actualmente trabajo en <span className="text-teal-400 font-medium">Traditum</span>, donde aplico mis conocimientos
+              en proyectos reales, y en mis tiempos libres desarrollo proyectos personales y trabajo con clientes freelance.
+            </p>
+            <p className="text-lg text-neutral-400 leading-relaxed">
+              Mi objetivo es desarrollar soluciones tecnológicas que no solo cumplan con las expectativas, sino que las superen.
+              Busco continuamente nuevos desafíos que me permitan crecer profesionalmente mientras aporto resultados concretos.
+            </p>
+          </div>
 
-            {/* Stats */}
-            <div
-              ref={statsRef as React.RefObject<HTMLDivElement>}
-              className={`mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 ${statsVisible ? 'is-visible' : ''}`}
-            >
-              <div className={`text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl anim-scale-in ${statsVisible ? 'is-visible' : ''}`}>
-                <div className="text-3xl mb-2">1+</div>
-                <div className="text-sm text-neutral-600">Años de experiencia</div>
+          {/* Stats */}
+          <div
+            ref={statsRef as React.RefObject<HTMLDivElement>}
+            className={`mt-12 grid grid-cols-3 gap-4 ${statsVisible ? 'is-visible' : ''}`}
+          >
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                className={`text-center p-6 skill-tile rounded-2xl anim-scale-in ${i === 1 ? 'anim-delay-150' : i === 2 ? 'anim-delay-300' : ''} ${statsVisible ? 'is-visible' : ''}`}
+              >
+                <div className="text-3xl font-bold text-accent mb-1">{stat.value}</div>
+                <div className="text-sm text-neutral-500">{stat.label}</div>
               </div>
-              <div className={`text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl anim-scale-in anim-delay-150 ${statsVisible ? 'is-visible' : ''}`}>
-                <div className="text-3xl mb-2">5+</div>
-                <div className="text-sm text-neutral-600">Proyectos completados</div>
-              </div>
-              <div className={`text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl anim-scale-in anim-delay-300 ${statsVisible ? 'is-visible' : ''}`}>
-                <div className="text-3xl mb-2">100%</div>
-                <div className="text-sm text-neutral-600">Comprometido</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
