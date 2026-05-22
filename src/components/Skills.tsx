@@ -77,7 +77,11 @@ export function Skills() {
           {/* Core — ocupa 2 columnas en lg */}
           <div className={`lg:col-span-2 skill-tile rounded-2xl p-8 anim-slide-left ${cardsVisible ? 'is-visible' : ''}`}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl gradient-accent flex items-center justify-center text-lg">⚡</div>
+              <div className="w-10 h-10 rounded-xl gradient-accent flex items-center justify-center">
+                <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 2L3 11h7l-1 7 8-9h-7l1-7z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <div>
                 <h3 className="text-white text-lg font-semibold">Core Stack</h3>
                 <p className="text-neutral-500 text-sm">Tecnologías principales</p>
@@ -91,7 +95,12 @@ export function Skills() {
           {/* DevOps */}
           <div className={`skill-tile rounded-2xl p-8 anim-slide-right ${cardsVisible ? 'is-visible' : ''}`}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-lg">🛠️</div>
+              <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
+                <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l.3-.3-3-3-.3.3zM9 11L3 17l1 1 6-6" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13 5l2 2-8 8-3 1 1-3 8-8z" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <div>
                 <h3 className="text-white text-lg font-semibold">DevOps & Tools</h3>
                 <p className="text-neutral-500 text-sm">Infraestructura y prácticas</p>
@@ -105,7 +114,12 @@ export function Skills() {
           {/* Soft skills — full width */}
           <div className={`lg:col-span-3 skill-tile rounded-2xl p-8 anim-fade-up anim-delay-150 ${cardsVisible ? 'is-visible' : ''}`}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-lg">💡</div>
+              <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center">
+                <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 2a6 6 0 100 12 6 6 0 000-12zM7 10h6M10 7v6" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M10 2v1M10 17v1M2 10h1M17 10h1" stroke="#00d4aa" strokeWidth="1.2" strokeLinecap="round" opacity="0.5"/>
+                </svg>
+              </div>
               <div>
                 <h3 className="text-white text-lg font-semibold">Soft Skills & Metodologías</h3>
                 <p className="text-neutral-500 text-sm">Competencias profesionales</p>

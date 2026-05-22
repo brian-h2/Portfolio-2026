@@ -20,10 +20,66 @@ const techColors: Record<string, string> = {
 
 const defaultTechClass = 'bg-white/5 text-neutral-400 border-white/10';
 
+// SVG icons per project type
+const AiIcon = () => (
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+    <rect x="8" y="14" width="24" height="18" rx="4" fill="none" stroke="#00d4aa" strokeWidth="1.8"/>
+    <rect x="15" y="10" width="10" height="5" rx="2" fill="#00d4aa" opacity="0.25" stroke="#00d4aa" strokeWidth="1.5"/>
+    <circle cx="15" cy="23" r="2.5" fill="#00d4aa" opacity="0.85"/>
+    <circle cx="25" cy="23" r="2.5" fill="#00d4aa" opacity="0.85"/>
+    <path d="M17.5 28.5 Q20 30.5 22.5 28.5" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="4" y1="20" x2="8" y2="20" stroke="#00d4aa" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="32" y1="20" x2="36" y2="20" stroke="#00d4aa" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="20" cy="7" r="1.2" fill="#00d4aa"/>
+  </svg>
+);
+
+const HrIcon = () => (
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+    <rect x="6" y="16" width="28" height="18" rx="3" fill="none" stroke="#a78bfa" strokeWidth="1.8"/>
+    <path d="M14 16V13C14 11.343 15.343 10 17 10H23C24.657 10 26 11.343 26 13V16" stroke="#a78bfa" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="6" y1="22" x2="34" y2="22" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    <circle cx="20" cy="22" r="2.5" fill="#a78bfa" opacity="0.9"/>
+    <line x1="20" y1="22" x2="20" y2="19.5" stroke="#a78bfa" strokeWidth="1.5"/>
+    <rect x="14" y="27" width="12" height="2" rx="1" fill="#a78bfa" opacity="0.4"/>
+  </svg>
+);
+
+const BarberIcon = () => (
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+    <circle cx="13" cy="13" r="4" fill="none" stroke="#fb923c" strokeWidth="1.8"/>
+    <circle cx="27" cy="27" r="4" fill="none" stroke="#fb923c" strokeWidth="1.8"/>
+    <line x1="16.5" y1="16.5" x2="23.5" y2="23.5" stroke="#fb923c" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="8" y1="32" x2="16" y2="24" stroke="#fb923c" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="32" y1="8" x2="24" y2="16" stroke="#fb923c" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="13" cy="13" r="1.8" fill="#fb923c" opacity="0.5"/>
+    <circle cx="27" cy="27" r="1.8" fill="#fb923c" opacity="0.5"/>
+  </svg>
+);
+
+const InventoryIcon = () => (
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+    <rect x="7" y="18" width="26" height="16" rx="2" fill="none" stroke="#34d399" strokeWidth="1.8"/>
+    <path d="M7 22H33" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    <path d="M13 18V14C13 11.791 14.791 10 17 10H23C25.209 10 27 11.791 27 14V18" stroke="#34d399" strokeWidth="1.8" strokeLinecap="round"/>
+    <rect x="16" y="25" width="8" height="5" rx="1.5" fill="#34d399" opacity="0.3" stroke="#34d399" strokeWidth="1.2"/>
+    <line x1="20" y1="25" x2="20" y2="30" stroke="#34d399" strokeWidth="1.2"/>
+  </svg>
+);
+
+const MechanicIcon = () => (
+  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+    <circle cx="20" cy="20" r="7" fill="none" stroke="#60a5fa" strokeWidth="1.8"/>
+    <circle cx="20" cy="20" r="2.5" fill="#60a5fa" opacity="0.7"/>
+    <path d="M20 7V11M20 29V33M7 20H11M29 20H33" stroke="#60a5fa" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M11.1 11.1L13.9 13.9M26.1 26.1L28.9 28.9M11.1 28.9L13.9 26.1M26.1 13.9L28.9 11.1" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+  </svg>
+);
+
 const projects = [
   {
     name: 'ExplainMyCode',
-    emoji: '🤖',
+    icon: <AiIcon />,
     description: 'Chat inteligente con IA generativa para asistencia en código en tiempo real.',
     stack: ['Node.js', 'Express', 'OpenAI API', 'SQL Lite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
     impact: 'Propone mejoras en tu código y resuelve dudas técnicas de forma rápida.',
@@ -33,7 +89,7 @@ const projects = [
   },
   {
     name: 'Web RRHH',
-    emoji: '👔',
+    icon: <HrIcon />,
     description: 'Sitio profesional orientado a RRHH con branding y captación de clientes.',
     stack: ['React', 'TailwindCSS', 'JavaScript', 'Next.js', 'TypeScript', 'Railway', 'MongoDB'],
     impact: 'Gestión de clientes y oportunidades laborales para conectar profesionales.',
@@ -43,7 +99,7 @@ const projects = [
   },
   {
     name: 'Barbería Online',
-    emoji: '✂️',
+    icon: <BarberIcon />,
     description: 'App web para gestión de reservas, clientes y servicios de barbería.',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'React'],
     impact: 'Agiliza reservas y mejora la experiencia del negocio y sus clientes.',
@@ -53,7 +109,7 @@ const projects = [
   },
   {
     name: 'Avaporu',
-    emoji: '📦',
+    icon: <InventoryIcon />,
     description: 'Plataforma de gestión, control y distribución de gastos, stock y recursos.',
     stack: ['Node.js', 'Express', 'MongoDB', 'React', 'REST API'],
     impact: 'Optimización en distribución de recursos y gestión solidaria.',
@@ -63,7 +119,7 @@ const projects = [
   },
   {
     name: 'Mecanic SaaS',
-    emoji: '🔧',
+    icon: <MechanicIcon />,
     description: 'Gestión de talleres mecánicos: servicios, clientes y registros diarios.',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'React'],
     impact: 'Optimiza la operación diaria de talleres con interfaz intuitiva.',
@@ -103,7 +159,7 @@ export function Projects() {
               {/* Card header with gradient */}
               <div className={`bg-gradient-to-br ${project.accent} p-6 border-b border-white/5`}>
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl">{project.emoji}</span>
+                  {project.icon}
                   <h3 className="text-white font-semibold text-lg">{project.name}</h3>
                 </div>
               </div>

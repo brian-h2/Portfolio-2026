@@ -18,9 +18,9 @@ export function Contact() {
             ref={headingRef as React.RefObject<HTMLDivElement>}
             className={`text-center mb-12 anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
           >
-            <h2 className="mb-3 text-5xl font-bold text-white">Conectemos</h2>
+            <h2 className="mb-3 text-5xl font-bold text-white">Hablemos</h2>
             <p className="text-neutral-400">
-              ¿Interesado en trabajar juntos? Estoy disponible para nuevas oportunidades.
+              ¿Tenés un proyecto o una oportunidad laboral? Escribime y lo conversamos.
             </p>
           </div>
 

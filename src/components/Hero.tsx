@@ -2,7 +2,6 @@ import { Download, ArrowDown } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export function Hero() {
-  const { ref: badgeRef, isVisible: badgeVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: avatarRef, isVisible: avatarVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -24,39 +23,28 @@ export function Hero() {
           {/* Left — Text */}
           <div className="flex-1 space-y-8">
 
-            {/* Status badge */}
-            <div
-              ref={badgeRef as React.RefObject<HTMLDivElement>}
-              className={`anim-fade-up ${badgeVisible ? 'is-visible' : ''}`}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-400 text-sm">
-                <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-                Disponible para nuevas oportunidades
-              </span>
-            </div>
-
             {/* Title */}
             <div
               ref={titleRef as React.RefObject<HTMLDivElement>}
-              className={`space-y-4 anim-fade-up anim-delay-150 ${titleVisible ? 'is-visible' : ''}`}
+              className={`space-y-4 anim-fade-up ${titleVisible ? 'is-visible' : ''}`}
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
                 Desarrollador
                 <br />
                 <span className="text-accent">Full Stack</span>
                 <br />
-                <span className="text-neutral-400 text-4xl md:text-5xl">& IA </span>
+                <span className="text-neutral-400 text-4xl md:text-5xl">&amp; IA</span>
               </h1>
               <p className="text-lg text-neutral-400 max-w-xl leading-relaxed">
                 Construyo productos digitales con React, Node.js, TypeScript e integración de IA.
-                Enfocado en arquitectura limpia y resultados que cumplen con las expectactivas.
+                Enfocado en arquitectura limpia y resultados que superan las expectativas.
               </p>
             </div>
 
             {/* CTAs */}
             <div
               ref={ctaRef as React.RefObject<HTMLDivElement>}
-              className={`flex flex-wrap gap-4 anim-fade-up anim-delay-300 ${ctaVisible ? 'is-visible' : ''}`}
+              className={`flex flex-wrap gap-4 anim-fade-up anim-delay-150 ${ctaVisible ? 'is-visible' : ''}`}
             >
               <button
                 onClick={() => window.open('/cv.pdf', '_blank')}
@@ -76,7 +64,7 @@ export function Hero() {
 
             {/* Terminal decoration */}
             <div
-              className={`anim-fade-up anim-delay-400 ${ctaVisible ? 'is-visible' : ''} hidden md:block`}
+              className={`anim-fade-up anim-delay-300 ${ctaVisible ? 'is-visible' : ''} hidden md:block`}
             >
               <div className="inline-flex flex-col gap-1 px-4 py-3 rounded-lg bg-white/[0.03] border border-white/[0.06] font-mono text-sm">
                 <span className="terminal-line text-neutral-400">Next.JS, React · TypeScript · Node.js</span>

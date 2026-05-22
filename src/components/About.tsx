@@ -1,8 +1,8 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const stats = [
-  { value: '+2', label: 'Años de experiencia' },
-  { value: '+7', label: 'Proyectos completados' },
+  { value: '+3', label: 'Años de experiencia' },
+  { value: '+7', label: 'Proyectos en producción' },
   { value: '100%', label: 'Comprometido' },
 ];
 
