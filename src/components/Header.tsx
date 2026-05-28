@@ -1,8 +1,12 @@
 import { Download } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggleLanguage } = useLanguage();
+  const t = translations[lang].header;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -36,13 +40,7 @@ export function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {[
-            { label: 'Sobre mí', id: 'about' },
-            { label: 'Proyectos', id: 'projects' },
-            { label: 'Skills', id: 'skills' },
-            { label: 'Experiencia', id: 'experience' },
-            { label: 'Contacto', id: 'contact' },
-          ].map((item) => (
+          {t.nav.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
@@ -53,14 +51,27 @@ export function Header() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <button
-          onClick={() => window.open('/cv.pdf', '_blank')}
-          className="flex items-center gap-2 px-4 py-2 gradient-accent text-white text-sm font-medium rounded-xl hover:opacity-90 hover:scale-105 transition-all duration-200"
-        >
-          <Download className="w-4 h-4" />
-          CV
-        </button>
+        {/* Right actions */}
+        <div className="flex items-center gap-3">
+          {/* Language toggle */}
+          <button
+            onClick={toggleLanguage}
+            title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/10 text-neutral-400 hover:text-white hover:border-teal-500/50 hover:bg-white/5 transition-all duration-200 text-sm font-medium"
+          >
+            <span className="text-base leading-none">{lang === 'es' ? '🇺🇸' : '🇦🇷'}</span>
+            <span className="hidden sm:inline">{lang === 'es' ? 'EN' : 'ES'}</span>
+          </button>
+
+          {/* CTA */}
+          <button
+            onClick={() => window.open('/cv.pdf', '_blank')}
+            className="flex items-center gap-2 px-4 py-2 gradient-accent text-white text-sm font-medium rounded-xl hover:opacity-90 hover:scale-105 transition-all duration-200"
+          >
+            <Download className="w-4 h-4" />
+            {t.cv}
+          </button>
+        </div>
       </div>
     </header>
   );

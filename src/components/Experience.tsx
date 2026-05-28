@@ -1,25 +1,18 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
-const experiences = [
-  {
-    role: 'Full Stack Developer',
-    company: 'TraditumSA',
-    year: '2024 – Presente',
-    impact: 'Desarrollo y mantenimiento de aplicaciones web, contribuyendo a la mejora continua de los procesos internos, decisiones operativas y satisfacción del cliente.',
-    tags: ['React', 'Node.js', '.NET', 'ASP.NET Core', 'SQL Server', 'Azure', 'Scrum'],
-  },
-  {
-    role: 'Freelancer',
-    company: 'Proyectos propios',
-    year: '2024 – Presente',
-    impact: 'Implementación de soluciones personalizadas para clientes, logrando una satisfacción del 100% en cada entrega.',
-    tags: ['Next.js','Typescript', 'Node.Js', 'Express', 'Supabase', 'MongoDB', 'OpenAI', 'Scrum'],
-  },
+const experienceTags = [
+  ['React', 'Node.js', '.NET', 'ASP.NET Core', 'SQL Server', 'Azure', 'Scrum'],
+  ['Next.js', 'Typescript', 'Node.Js', 'Express', 'Supabase', 'MongoDB', 'OpenAI', 'Scrum'],
 ];
 
 export function Experience() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
   const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation({ threshold: 0.05 });
+
+  const { lang } = useLanguage();
+  const t = translations[lang].experience;
 
   return (
     <section id="experience" className="py-32 px-8 section-alt">
@@ -30,8 +23,8 @@ export function Experience() {
           ref={headingRef as React.RefObject<HTMLDivElement>}
           className={`mb-16 text-center max-w-3xl mx-auto anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
         >
-          <h2 className="mb-3 text-5xl font-bold text-white">Experiencia</h2>
-          <p className="text-neutral-400">Trayectoria profesional con resultados concretos</p>
+          <h2 className="mb-3 text-5xl font-bold text-white">{t.heading}</h2>
+          <p className="text-neutral-400">{t.subtitle}</p>
         </div>
 
         <div className="max-w-3xl mx-auto">
@@ -42,7 +35,7 @@ export function Experience() {
             {/* Timeline line */}
             <div className="absolute left-5 top-6 bottom-6 w-px bg-gradient-to-b from-teal-500 via-violet-500 to-transparent" />
 
-            {experiences.map((exp, index) => (
+            {t.items.map((exp, index) => (
               <div
                 key={index}
                 className={`relative pl-14 anim-slide-right ${index === 1 ? 'anim-delay-200' : ''} ${timelineVisible ? 'is-visible' : ''}`}
@@ -65,7 +58,7 @@ export function Experience() {
                   </div>
                   <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.impact}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {exp.tags.map((tag) => (
+                    {experienceTags[index].map((tag) => (
                       <span key={tag} className="tech-badge text-xs">{tag}</span>
                     ))}
                   </div>

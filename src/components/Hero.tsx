@@ -1,10 +1,15 @@
 import { Download, ArrowDown } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export function Hero() {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: avatarRef, isVisible: avatarVisible } = useScrollAnimation({ threshold: 0.1 });
+
+  const { lang } = useLanguage();
+  const t = translations[lang].hero;
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -29,15 +34,14 @@ export function Hero() {
               className={`space-y-4 anim-fade-up ${titleVisible ? 'is-visible' : ''}`}
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
-                Desarrollador
+                {t.title1}
                 <br />
-                <span className="text-accent">Full Stack</span>
+                <span className="text-accent">{t.title2}</span>
                 <br />
-                <span className="text-neutral-400 text-4xl md:text-5xl">&amp; IA</span>
+                <span className="text-neutral-400 text-4xl md:text-5xl">{t.title3}</span>
               </h1>
               <p className="text-lg text-neutral-400 max-w-xl leading-relaxed">
-                Construyo productos digitales con React, Node.js, TypeScript e integración de IA.
-                Enfocado en arquitectura limpia y resultados que superan las expectativas.
+                {t.subtitle}
               </p>
             </div>
 
@@ -51,13 +55,13 @@ export function Hero() {
                 className="flex items-center gap-2 px-6 py-3 gradient-accent text-white font-medium rounded-xl hover:opacity-90 hover:scale-105 transition-all duration-200 glow-accent"
               >
                 <Download className="w-4 h-4" />
-                Descargar CV
+                {t.downloadCV}
               </button>
               <button
                 onClick={scrollToProjects}
                 className="flex items-center gap-2 px-6 py-3 border border-white/15 text-neutral-300 font-medium rounded-xl hover:border-teal-500/50 hover:text-teal-400 transition-all duration-200"
               >
-                Ver proyectos
+                {t.viewProjects}
                 <ArrowDown className="w-4 h-4" />
               </button>
             </div>

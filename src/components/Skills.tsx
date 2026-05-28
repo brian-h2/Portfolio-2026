@@ -1,6 +1,7 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
-// SVG icons inline para no depender de librerías extra
 const icons: Record<string, string> = {
   'TypeScript': '#3178c6',
   'JavaScript': '#f7df1e',
@@ -33,12 +34,6 @@ const devOpsSkills = [
   'Docker', 'Azure', 'Git', 'CI/CD', 'Clean Arch', 'REST API', 'OpenAI', 'Tailwind',
 ];
 
-const methodSkills = [
-  'Agile', 'Jira',
-  'Comunicación efectiva', 'Resolución de problemas',
-  'Trabajo autónomo', 'Colaboración en equipo',
-];
-
 function TechBadge({ name }: { name: string }) {
   const color = icons[name] ?? '#94a3b8';
   return (
@@ -56,6 +51,9 @@ export function Skills() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation({ threshold: 0.05 });
 
+  const { lang } = useLanguage();
+  const t = translations[lang].skills;
+
   return (
     <section id="skills" className="py-32 px-8 section-alt">
       <div className="max-w-7xl mx-auto">
@@ -65,8 +63,8 @@ export function Skills() {
           ref={headingRef as React.RefObject<HTMLDivElement>}
           className={`mb-16 text-center max-w-3xl mx-auto anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
         >
-          <h2 className="mb-3 text-5xl font-bold text-white">Skills</h2>
-          <p className="text-neutral-400">Stack técnico y competencias profesionales</p>
+          <h2 className="mb-3 text-5xl font-bold text-white">{t.heading}</h2>
+          <p className="text-neutral-400">{t.subtitle}</p>
         </div>
 
         {/* Bento grid */}
@@ -83,8 +81,8 @@ export function Skills() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-white text-lg font-semibold">Core Stack</h3>
-                <p className="text-neutral-500 text-sm">Tecnologías principales</p>
+                <h3 className="text-white text-lg font-semibold">{t.coreLabel}</h3>
+                <p className="text-neutral-500 text-sm">{t.coreSubLabel}</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -102,8 +100,8 @@ export function Skills() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-white text-lg font-semibold">DevOps & Tools</h3>
-                <p className="text-neutral-500 text-sm">Infraestructura y prácticas</p>
+                <h3 className="text-white text-lg font-semibold">{t.devopsLabel}</h3>
+                <p className="text-neutral-500 text-sm">{t.devopsSubLabel}</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -121,12 +119,12 @@ export function Skills() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-white text-lg font-semibold">Soft Skills & Metodologías</h3>
-                <p className="text-neutral-500 text-sm">Competencias profesionales</p>
+                <h3 className="text-white text-lg font-semibold">{t.softLabel}</h3>
+                <p className="text-neutral-500 text-sm">{t.softSubLabel}</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {methodSkills.map((s) => <TechBadge key={s} name={s} />)}
+              {t.methodSkills.map((s) => <TechBadge key={s} name={s} />)}
             </div>
           </div>
         </div>

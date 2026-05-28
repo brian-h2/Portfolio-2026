@@ -1,9 +1,14 @@
 import { Mail, Linkedin, Github } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export function Contact() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
   const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation({ threshold: 0.1 });
+
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
 
   return (
     <section id="contact" className="py-32 px-8 relative overflow-hidden">
@@ -18,10 +23,8 @@ export function Contact() {
             ref={headingRef as React.RefObject<HTMLDivElement>}
             className={`text-center mb-12 anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
           >
-            <h2 className="mb-3 text-5xl font-bold text-white">Hablemos</h2>
-            <p className="text-neutral-400">
-              ¿Tenés un proyecto o una oportunidad laboral? Escribime y lo conversamos.
-            </p>
+            <h2 className="mb-3 text-5xl font-bold text-white">{t.heading}</h2>
+            <p className="text-neutral-400">{t.subtitle}</p>
           </div>
 
           {/* Contact card */}
@@ -59,7 +62,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-neutral-500 mb-0.5">LinkedIn</div>
-                    <div className="text-white text-sm font-medium">Ver perfil</div>
+                    <div className="text-white text-sm font-medium">{t.viewProfile}</div>
                   </div>
                 </a>
 
@@ -74,7 +77,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-neutral-500 mb-0.5">GitHub</div>
-                    <div className="text-white text-sm font-medium">Ver proyectos</div>
+                    <div className="text-white text-sm font-medium">{t.viewProjects}</div>
                   </div>
                 </a>
               </div>

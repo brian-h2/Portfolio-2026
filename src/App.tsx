@@ -7,6 +7,7 @@ import { Experience } from './components/Experience';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { LanguageProvider } from './context/LanguageContext';
 
 function ScrollProgress() {
   const [width, setWidth] = useState(0);
@@ -31,20 +32,22 @@ function ScrollProgress() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#060d1f] via-[#0a1628] to-[#060d1f] relative">
-      <ScrollProgress />
-      <div className="relative z-10">
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Skills />
-          <Experience />
-          <Contact />
-        </main>
-        <Footer />
+    <LanguageProvider>
+      <div className="min-h-screen bg-gradient-to-b from-[#060d1f] via-[#0a1628] to-[#060d1f] relative">
+        <ScrollProgress />
+        <div className="relative z-10">
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Projects />
+            <Skills />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }

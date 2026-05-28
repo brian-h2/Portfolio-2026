@@ -1,5 +1,7 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 const techColors: Record<string, string> = {
   'React': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
@@ -15,7 +17,9 @@ const techColors: Record<string, string> = {
   'CSS': 'bg-pink-500/10 text-pink-400 border-pink-500/20',
   'Supabase': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
   'TailwindCSS': 'bg-cyan-400/10 text-cyan-300 border-cyan-400/20',
-  'REST API': 'bg-orange-500/10 text-orange-400 border-orange-500/20'
+  'REST API': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+  'Railway': 'bg-purple-400/10 text-purple-300 border-purple-400/20',
+  'Tailwind CSS': 'bg-cyan-400/10 text-cyan-300 border-cyan-400/20',
 };
 
 const defaultTechClass = 'bg-white/5 text-neutral-400 border-white/10';
@@ -76,62 +80,35 @@ const MechanicIcon = () => (
   </svg>
 );
 
-const projects = [
-  {
-    name: 'ExplainMyCode',
-    icon: <AiIcon />,
-    description: 'Chat inteligente con IA generativa para asistencia en código en tiempo real.',
-    stack: ['Node.js', 'Express', 'OpenAI API', 'SQL Lite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
-    impact: 'Propone mejoras en tu código y resuelve dudas técnicas de forma rápida.',
-    demo: 'https://explain-my-code-green.vercel.app/#',
-    code: 'https://github.com/brian-h2/ExplainMyCode',
-    accent: 'from-teal-500/20 to-cyan-600/10',
-  },
-  {
-    name: 'Web RRHH',
-    icon: <HrIcon />,
-    description: 'Sitio profesional orientado a RRHH con branding y captación de clientes.',
-    stack: ['React', 'TailwindCSS', 'JavaScript', 'Next.js', 'TypeScript', 'Railway', 'MongoDB'],
-    impact: 'Gestión de clientes y oportunidades laborales para conectar profesionales.',
-    demo: 'https://ceciliamentarrhh.com/',
-    code: 'https://github.com/brian-h2/Aplicacion-RRHH',
-    accent: 'from-violet-500/20 to-purple-600/10',
-  },
-  {
-    name: 'Barbería Online',
-    icon: <BarberIcon />,
-    description: 'App web para gestión de reservas, clientes y servicios de barbería.',
-    stack: ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'React'],
-    impact: 'Agiliza reservas y mejora la experiencia del negocio y sus clientes.',
-    demo: 'https://barber-saa-s-one.vercel.app/',
-    code: 'https://github.com/fmbpartnersorg/BarberSaaS',
-    accent: 'from-orange-500/20 to-amber-600/10',
-  },
-  {
-    name: 'Avaporu',
-    icon: <InventoryIcon />,
-    description: 'Plataforma de gestión, control y distribución de gastos, stock y recursos.',
-    stack: ['Node.js', 'Express', 'MongoDB', 'React', 'REST API'],
-    impact: 'Optimización en distribución de recursos y gestión solidaria.',
-    demo: 'https://sistema-modular-de-ventas-avaporu.vercel.app/login',
-    code: 'https://github.com/brian-h2/Sistema-modular-de-ventas-AVAPORU',
-    accent: 'from-green-500/20 to-emerald-600/10',
-  },
-  {
-    name: 'Mecanic SaaS',
-    icon: <MechanicIcon />,
-    description: 'Gestión de talleres mecánicos: servicios, clientes y registros diarios.',
-    stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'React'],
-    impact: 'Optimiza la operación diaria de talleres con interfaz intuitiva.',
-    demo: 'https://mecanicsaas.vercel.app/',
-    code: 'https://github.com/fmbpartnersorg/mecanicsaas',
-    accent: 'from-blue-500/20 to-indigo-600/10',
-  },
+const projectIcons = [<AiIcon />, <HrIcon />, <BarberIcon />, <InventoryIcon />, <MechanicIcon />];
+const projectAccents = [
+  'from-teal-500/20 to-cyan-600/10',
+  'from-violet-500/20 to-purple-600/10',
+  'from-orange-500/20 to-amber-600/10',
+  'from-green-500/20 to-emerald-600/10',
+  'from-blue-500/20 to-indigo-600/10',
+];
+const projectStacks = [
+  ['Node.js', 'Express', 'OpenAI API', 'SQL Lite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
+  ['React', 'TailwindCSS', 'JavaScript', 'Next.js', 'TypeScript', 'Railway', 'MongoDB'],
+  ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'React'],
+  ['Node.js', 'Express', 'MongoDB', 'React', 'REST API'],
+  ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'React'],
+];
+const projectLinks = [
+  { demo: 'https://explain-my-code-green.vercel.app/#', code: 'https://github.com/brian-h2/ExplainMyCode' },
+  { demo: 'https://ceciliamentarrhh.com/', code: 'https://github.com/brian-h2/Aplicacion-RRHH' },
+  { demo: 'https://barber-saa-s-one.vercel.app/', code: 'https://github.com/fmbpartnersorg/BarberSaaS' },
+  { demo: 'https://sistema-modular-de-ventas-avaporu.vercel.app/login', code: 'https://github.com/brian-h2/Sistema-modular-de-ventas-AVAPORU' },
+  { demo: 'https://mecanicsaas.vercel.app/', code: 'https://github.com/fmbpartnersorg/mecanicsaas' },
 ];
 
 export function Projects() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.05 });
+
+  const { lang } = useLanguage();
+  const t = translations[lang].projects;
 
   return (
     <section id="projects" className="py-32 px-8">
@@ -142,8 +119,8 @@ export function Projects() {
           ref={headingRef as React.RefObject<HTMLDivElement>}
           className={`mb-16 text-center max-w-3xl mx-auto anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
         >
-          <h2 className="text-white mb-3 text-5xl font-bold">Proyectos</h2>
-          <p className="text-neutral-400">Soluciones reales implementadas en producción</p>
+          <h2 className="text-white mb-3 text-5xl font-bold">{t.heading}</h2>
+          <p className="text-neutral-400">{t.subtitle}</p>
         </div>
 
         {/* Grid */}
@@ -151,15 +128,15 @@ export function Projects() {
           ref={gridRef as React.RefObject<HTMLDivElement>}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {projects.map((project, index) => (
+          {t.items.map((project, index) => (
             <div
               key={index}
               className={`project-card rounded-2xl overflow-hidden anim-fade-up ${index % 3 === 1 ? 'anim-delay-150' : index % 3 === 2 ? 'anim-delay-300' : ''} ${gridVisible ? 'is-visible' : ''}`}
             >
               {/* Card header with gradient */}
-              <div className={`bg-gradient-to-br ${project.accent} p-6 border-b border-white/5`}>
+              <div className={`bg-gradient-to-br ${projectAccents[index]} p-6 border-b border-white/5`}>
                 <div className="flex items-center gap-3">
-                  {project.icon}
+                  {projectIcons[index]}
                   <h3 className="text-white font-semibold text-lg">{project.name}</h3>
                 </div>
               </div>
@@ -170,7 +147,7 @@ export function Projects() {
 
                 {/* Stack */}
                 <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((tech, i) => (
+                  {projectStacks[index].map((tech, i) => (
                     <span
                       key={i}
                       className={`text-xs px-2.5 py-1 rounded-full border font-medium ${techColors[tech] ?? defaultTechClass}`}
@@ -188,22 +165,22 @@ export function Projects() {
                 {/* Links */}
                 <div className="flex gap-4 pt-1">
                   <a
-                    href={project.demo}
+                    href={projectLinks[index].demo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    Demo
+                    {t.demo}
                   </a>
                   <a
-                    href={project.code}
+                    href={projectLinks[index].code}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors"
                   >
                     <Github className="w-3.5 h-3.5" />
-                    Código
+                    {t.code}
                   </a>
                 </div>
               </div>

@@ -1,4 +1,10 @@
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
+
 export function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang].footer;
+
   return (
     <footer className="py-10 px-8 border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -12,7 +18,7 @@ export function Footer() {
           </div>
         </div>
         <p className="text-sm text-neutral-600">
-          © 2026 Brian. Todos los derechos reservados.
+          {t.copyright}
         </p>
       </div>
     </footer>
