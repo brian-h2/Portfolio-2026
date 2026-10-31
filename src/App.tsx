@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
+import { Education } from './components/Education';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -33,7 +34,7 @@ function ScrollProgress() {
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-gradient-to-b from-[#060d1f] via-[#0a1628] to-[#060d1f] relative">
+      <div className="min-h-screen bg-ink relative">
         <ScrollProgress />
         <div className="relative z-10">
           <Header />
@@ -43,6 +44,7 @@ export default function App() {
             <Projects />
             <Skills />
             <Experience />
+            <Education />
             <Contact />
           </main>
           <Footer />
