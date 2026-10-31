@@ -1,10 +1,11 @@
-import { Download } from 'lucide-react';
+import { Download, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { lang, toggleLanguage } = useLanguage();
   const t = translations[lang].header;
 
@@ -15,36 +16,33 @@ export function Header() {
   }, []);
 
   const scrollToSection = (id: string) => {
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'glass border-b border-white/10 shadow-lg shadow-black/20'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled || menuOpen ? 'bg-ink/95 backdrop-blur border-b border-white/10' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between gap-4">
 
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg gradient-accent flex items-center justify-center">
-            <span className="text-white font-bold text-sm">B</span>
-          </div>
-          <span className="text-white font-semibold">Brian</span>
-          <span className="text-neutral-600 hidden sm:inline">·</span>
-          <span className="text-neutral-400 text-sm hidden sm:inline">Full Stack & AI</span>
-        </div>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="font-display text-2xl font-bold uppercase tracking-wide text-white"
+        >
+          Brian<span className="text-brand">.</span>
+        </button>
 
         {/* Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-7">
           {t.nav.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-sm text-neutral-400 hover:text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
+              className="font-display text-sm uppercase tracking-widest text-neutral-300 hover:text-white transition-colors whitespace-nowrap"
             >
               {item.label}
             </button>
@@ -52,27 +50,50 @@ export function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* Language toggle */}
           <button
             onClick={toggleLanguage}
             title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/10 text-neutral-400 hover:text-white hover:border-teal-500/50 hover:bg-white/5 transition-all duration-200 text-sm font-medium"
+            className="h-10 px-3 border border-white/20 font-display text-sm tracking-widest text-neutral-300 hover:text-white hover:border-white transition-colors"
           >
-            <span className="text-base leading-none">{lang === 'es' ? '🇺🇸' : '🇦🇷'}</span>
-            <span className="hidden sm:inline">{lang === 'es' ? 'EN' : 'ES'}</span>
+            {lang === 'es' ? 'EN' : 'ES'}
           </button>
 
           {/* CTA */}
           <button
             onClick={() => window.open('/cv.pdf', '_blank')}
-            className="flex items-center gap-2 px-4 py-2 gradient-accent text-white text-sm font-medium rounded-xl hover:opacity-90 hover:scale-105 transition-all duration-200"
+            className="h-10 px-4 flex items-center gap-2 bg-brand font-display text-sm uppercase tracking-widest text-white hover:bg-brand-soft transition-colors"
           >
             <Download className="w-4 h-4" />
             {t.cv}
           </button>
+
+          {/* Mobile menu */}
+          <button
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={t.menu}
+            aria-expanded={menuOpen}
+            className="lg:hidden h-10 w-10 flex items-center justify-center text-white"
+          >
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <nav className="lg:hidden flex flex-col px-6 pb-4">
+          {t.nav.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="py-3 text-left font-display uppercase tracking-widest text-neutral-300 hover:text-white border-t border-white/10"
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

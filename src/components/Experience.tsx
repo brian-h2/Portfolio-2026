@@ -1,71 +1,56 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import { SectionHeading } from './SectionHeading';
 
 const experienceTags = [
-  ['React', 'Node.js', '.NET', 'ASP.NET Core', 'SQL Server', 'Azure', 'Scrum'],
-  ['Next.js', 'Typescript', 'Node.Js', 'Express', 'Supabase', 'MongoDB', 'OpenAI', 'Scrum'],
+  ['.NET', 'Node.js', 'Next.js', 'Microservices', 'REST API', 'Scrum', 'Azure DevOps'],
+  ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Vite', 'Node.js', 'Express'],
 ];
 
 export function Experience() {
-  const { ref: headingRef, isVisible: headingVisible } = useScrollAnimation();
-  const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation({ threshold: 0.05 });
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.05 });
 
   const { lang } = useLanguage();
   const t = translations[lang].experience;
 
   return (
-    <section id="experience" className="py-32 px-8 section-alt">
+    <section id="experience" className="relative py-24 md:py-32 px-6 md:px-8 bg-coal overflow-hidden">
       <div className="max-w-7xl mx-auto">
+        <SectionHeading title={t.heading} subtitle={t.subtitle} />
 
-        {/* Heading */}
         <div
-          ref={headingRef as React.RefObject<HTMLDivElement>}
-          className={`mb-16 text-center max-w-3xl mx-auto anim-fade-up ${headingVisible ? 'is-visible' : ''}`}
+          ref={gridRef as React.RefObject<HTMLDivElement>}
+          className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
         >
-          <h2 className="mb-3 text-5xl font-bold text-white">{t.heading}</h2>
-          <p className="text-neutral-400">{t.subtitle}</p>
-        </div>
-
-        <div className="max-w-3xl mx-auto">
-          <div
-            ref={timelineRef as React.RefObject<HTMLDivElement>}
-            className="relative space-y-6"
-          >
-            {/* Timeline line */}
-            <div className="absolute left-5 top-6 bottom-6 w-px bg-gradient-to-b from-teal-500 via-violet-500 to-transparent" />
-
-            {t.items.map((exp, index) => (
-              <div
-                key={index}
-                className={`relative pl-14 anim-slide-right ${index === 1 ? 'anim-delay-200' : ''} ${timelineVisible ? 'is-visible' : ''}`}
-              >
-                {/* Dot */}
-                <div className="absolute left-0 top-5 w-10 h-10 flex items-center justify-center">
-                  <div className="w-3 h-3 rounded-full bg-teal-400 ring-4 ring-teal-400/20 shadow-lg shadow-teal-500/30" />
-                </div>
-
-                <div className="project-card rounded-2xl p-7">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
-                    <div>
-                      <h3 className="text-white font-semibold text-lg">{exp.role}</h3>
-                      <span className="text-teal-400 text-sm font-medium">{exp.company}</span>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-neutral-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap">
-                      <span className="w-1.5 h-1.5 bg-teal-400 rounded-full" />
-                      {exp.year}
-                    </span>
-                  </div>
-                  <p className="text-neutral-400 text-sm leading-relaxed mb-4">{exp.impact}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {experienceTags[index].map((tag) => (
-                      <span key={tag} className="tech-badge text-xs">{tag}</span>
-                    ))}
-                  </div>
-                </div>
+          {t.items.map((exp, index) => (
+            <div
+              key={exp.company}
+              className={`anim-fade-up ${index === 1 ? 'anim-delay-150' : ''} ${gridVisible ? 'is-visible' : ''}`}
+            >
+              <div aria-hidden="true" className="font-display text-7xl font-bold text-outline-brand mb-5">
+                0{index + 1}
               </div>
-            ))}
-          </div>
+              <h3 className="text-2xl font-medium text-white">{exp.role}</h3>
+              <div className="mt-1 mb-5 flex flex-wrap items-center gap-x-3 text-sm">
+                <span className="text-brand-soft font-medium">{exp.company}</span>
+                <span className="text-neutral-400">{exp.year}</span>
+              </div>
+              <ul className="space-y-2 mb-6">
+                {exp.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-3 text-sm text-neutral-300 leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 bg-brand flex-shrink-0" />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {experienceTags[index].map((tag) => (
+                  <span key={tag} className="chip">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

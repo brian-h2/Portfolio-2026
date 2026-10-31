@@ -6,30 +6,34 @@ export const translations = {
         { label: 'Proyectos', id: 'projects' },
         { label: 'Skills', id: 'skills' },
         { label: 'Experiencia', id: 'experience' },
+        { label: 'Formación', id: 'education' },
         { label: 'Contacto', id: 'contact' },
       ],
       cv: 'CV',
+      menu: 'Abrir menú',
     },
     hero: {
+      greeting: 'Hola, soy',
+      name: 'Brian',
       title1: 'Desarrollador',
       title2: 'Full Stack',
-      title3: '& IA',
       subtitle:
-        'Construyo productos digitales con React, Node.js, TypeScript e integración de IA. Enfocado en arquitectura limpia y resultados que superan las expectativas.',
+        'Especializado en backend y AI Engineering. Construyo APIs REST escalables y productos SaaS end-to-end con Node.js, React y Next.js.',
       downloadCV: 'Descargar CV',
       viewProjects: 'Ver proyectos',
     },
     about: {
       heading: 'Sobre mí',
-      p1: 'Desde 2022 inmerso en el mundo del software, con gran esfuerzo y dedicación. Actualmente trabajo en',
+      headline: 'Backend e IA para productos que escalan',
+      p1: 'Soy desarrollador Full-Stack especializado en backend y AI Engineering, con foco en Node.js, React y Next.js, y más de 2 años de experiencia construyendo APIs REST escalables y productos SaaS end-to-end. Actualmente trabajo en',
       p1company: 'Traditum',
       p1end:
-        ', donde aplico mis conocimientos en proyectos reales, y en mis tiempos libres desarrollo proyectos personales y trabajo con clientes freelance.',
-      p2: 'Mi objetivo es desarrollar soluciones tecnológicas que no solo cumplan con las expectativas, sino que las superen. Busco continuamente nuevos desafíos que me permitan crecer profesionalmente mientras aporto resultados concretos.',
+        ', donde diseño microservicios y APIs REST con .NET y Node.js, y en paralelo desarrollo proyectos freelance.',
+      p2: 'Me estoy formando como AI Engineer en Scrimba y en DevOps con Docker. Tengo experiencia trabajando con AWS y bajo metodologías ágiles, y uso habitualmente herramientas de IA como Claude, Cursor y Copilot para acelerar y mejorar cada etapa del ciclo de desarrollo de software.',
       stats: [
-        { value: '+3', label: 'Años de experiencia' },
+        { value: '+2', label: 'Años de experiencia' },
         { value: '+7', label: 'Proyectos en producción' },
-        { value: '100%', label: 'Comprometido' },
+        { value: 'B2', label: 'Nivel de inglés' },
       ],
     },
     projects: {
@@ -68,39 +72,89 @@ export const translations = {
     skills: {
       heading: 'Skills',
       subtitle: 'Stack técnico y competencias profesionales',
-      coreLabel: 'Core Stack',
-      coreSubLabel: 'Tecnologías principales',
-      devopsLabel: 'DevOps & Tools',
-      devopsSubLabel: 'Infraestructura y prácticas',
-      softLabel: 'Soft Skills & Metodologías',
-      softSubLabel: 'Competencias profesionales',
-      methodSkills: [
-        'Agile',
-        'Jira',
-        'Comunicación efectiva',
-        'Resolución de problemas',
-        'Trabajo autónomo',
-        'Colaboración en equipo',
+      groups: [
+        {
+          label: 'Backend',
+          subLabel: 'APIs y servicios',
+          skills: ['Node.js', 'NestJS', 'Express', 'REST API', 'JWT', '.NET'],
+        },
+        {
+          label: 'AI Engineering',
+          subLabel: 'En formación en Scrimba',
+          skills: ['AI Engineer', 'Claude', 'Copilot', 'Cursor', 'Kiro'],
+        },
+        {
+          label: 'Frontend',
+          subLabel: 'Interfaces y experiencia de usuario',
+          skills: ['React', 'Next.js', 'TailwindCSS', 'JavaScript', 'TypeScript'],
+        },
+        {
+          label: 'Cloud y DevOps',
+          subLabel: 'AWS y Docker',
+          skills: ['AWS EC2', 'AWS RDS', 'AWS S3', 'AWS Lambda (aprendiendo)', 'Docker (en formación)', 'Contenedores', 'Imágenes', 'Volúmenes', 'Logs'],
+        },
+        {
+          label: 'Bases de datos',
+          subLabel: 'Persistencia y caché',
+          skills: ['PostgreSQL', 'MySQL', 'TypeORM', 'Prisma', 'Redis'],
+        },
+        {
+          label: 'Herramientas y metodologías',
+          subLabel: 'Forma de trabajo',
+          skills: ['Git', 'GitHub', 'Scrum', 'Azure DevOps', 'SDLC', 'Code Reviews', 'Testing'],
+        },
       ],
     },
     experience: {
       heading: 'Experiencia',
-      subtitle: 'Trayectoria profesional con resultados concretos',
+      subtitle: 'Trayectoria profesional como desarrollador Full-Stack',
       items: [
         {
-          role: 'Full Stack Developer',
-          company: 'TraditumSA',
-          year: '2024 – Presente',
-          impact:
-            'Desarrollo y mantenimiento de aplicaciones web, contribuyendo a la mejora continua de los procesos internos, decisiones operativas y satisfacción del cliente.',
+          role: 'Desarrollador Full-Stack',
+          company: 'Traditum S.A',
+          year: 'Nov 2024 – Actualidad',
+          highlights: [
+            'Diseño de arquitectura de microservicios y APIs REST con .NET y Node.js, asegurando la integridad de datos en entornos de alta demanda.',
+            'Uso de Next.js para manejar front y back en un mismo proyecto.',
+            'Participación activa en Code Reviews y escritura de tests para asegurar la salud del codebase.',
+            'Trabajo colaborativo bajo SDLC en entornos ágiles (Scrum + Azure DevOps).',
+          ],
         },
         {
-          role: 'Freelancer',
-          company: 'Proyectos propios',
-          year: '2024 – Presente',
-          impact:
-            'Implementación de soluciones personalizadas para clientes, logrando una satisfacción del 100% en cada entrega.',
+          role: 'Desarrollador Full-Stack',
+          company: 'Proyectos Freelance',
+          year: '2024 – Actualidad',
+          highlights: [
+            'Desarrollo de interfaces modernas con React, Next.js, TailwindCSS, Vite y TypeScript.',
+            'Consumo de APIs con Axios y Fetch, y manejo de estado con Hooks y Context API.',
+            'Integración de rutas, formularios dinámicos, validaciones, dashboards y visualizaciones.',
+            'Desarrollo backend con Node.js y Express, con manejo de sesiones y cookies.',
+          ],
         },
+      ],
+    },
+    education: {
+      heading: 'Formación',
+      subtitle: 'Estudios e idiomas',
+      languagesLabel: 'Idiomas',
+      items: [
+        { title: 'AI Engineer', institution: 'Scrimba', year: '2026 – Actualidad' },
+        {
+          title: 'DevOps con Docker',
+          year: 'En curso',
+          note: 'Contenedores, imágenes, volúmenes y logs.',
+        },
+        { title: 'Analista de Sistemas', institution: 'IESXXI', year: '2023 – 2026' },
+        {
+          title: 'Desarrollo Web con React',
+          institution: 'CoderHouse',
+          year: 'Mar 2022 – Oct 2022',
+          note: 'Programa intensivo de más de 600 horas: HTML, CSS, JavaScript, React, Git y Firebase.',
+        },
+      ],
+      languages: [
+        { name: 'Español', level: 'Nativo' },
+        { name: 'Inglés', level: 'B2' },
       ],
     },
     contact: {
@@ -110,6 +164,8 @@ export const translations = {
       viewProjects: 'Ver proyectos',
     },
     footer: {
+      thanks: 'Gracias por visitar mi portfolio.',
+      backToTop: 'Volver arriba',
       copyright: '© 2026 Brian. Todos los derechos reservados.',
     },
   },
@@ -121,30 +177,34 @@ export const translations = {
         { label: 'Projects', id: 'projects' },
         { label: 'Skills', id: 'skills' },
         { label: 'Experience', id: 'experience' },
+        { label: 'Education', id: 'education' },
         { label: 'Contact', id: 'contact' },
       ],
       cv: 'CV',
+      menu: 'Open menu',
     },
     hero: {
+      greeting: "Hi, I'm",
+      name: 'Brian',
       title1: 'Full Stack',
       title2: 'Developer',
-      title3: '& AI',
       subtitle:
-        'I build digital products with React, Node.js, TypeScript and AI integration. Focused on clean architecture and results that exceed expectations.',
+        'Specialized in backend and AI Engineering. I build scalable REST APIs and end-to-end SaaS products with Node.js, React and Next.js.',
       downloadCV: 'Download CV',
       viewProjects: 'View projects',
     },
     about: {
       heading: 'About me',
-      p1: 'Since 2022 immersed in the world of software, with great effort and dedication. I currently work at',
+      headline: 'Backend and AI for products that scale',
+      p1: "I'm a Full-Stack developer specialized in backend and AI Engineering, focused on Node.js, React and Next.js, with over 2 years of experience building scalable REST APIs and end-to-end SaaS products. I currently work at",
       p1company: 'Traditum',
       p1end:
-        ', where I apply my knowledge on real projects, and in my free time I develop personal projects and work with freelance clients.',
-      p2: 'My goal is to develop technological solutions that not only meet expectations, but exceed them. I continuously seek new challenges that allow me to grow professionally while delivering concrete results.',
+        ', where I design microservices and REST APIs with .NET and Node.js, while also working on freelance projects.',
+      p2: 'I am training as an AI Engineer at Scrimba and in DevOps with Docker. I have experience working with AWS and in agile teams, and I regularly use AI tools such as Claude, Cursor and Copilot to speed up and improve every stage of the software development lifecycle.',
       stats: [
-        { value: '+3', label: 'Years of experience' },
+        { value: '+2', label: 'Years of experience' },
         { value: '+7', label: 'Production projects' },
-        { value: '100%', label: 'Committed' },
+        { value: 'B2', label: 'English level' },
       ],
     },
     projects: {
@@ -183,39 +243,89 @@ export const translations = {
     skills: {
       heading: 'Skills',
       subtitle: 'Technical stack and professional competencies',
-      coreLabel: 'Core Stack',
-      coreSubLabel: 'Main technologies',
-      devopsLabel: 'DevOps & Tools',
-      devopsSubLabel: 'Infrastructure and practices',
-      softLabel: 'Soft Skills & Methodologies',
-      softSubLabel: 'Professional competencies',
-      methodSkills: [
-        'Agile',
-        'Jira',
-        'Effective communication',
-        'Problem solving',
-        'Autonomous work',
-        'Team collaboration',
+      groups: [
+        {
+          label: 'Backend',
+          subLabel: 'APIs and services',
+          skills: ['Node.js', 'NestJS', 'Express', 'REST API', 'JWT', '.NET'],
+        },
+        {
+          label: 'AI Engineering',
+          subLabel: 'In training at Scrimba',
+          skills: ['AI Engineer', 'Claude', 'Copilot', 'Cursor', 'Kiro'],
+        },
+        {
+          label: 'Frontend',
+          subLabel: 'Interfaces and user experience',
+          skills: ['React', 'Next.js', 'TailwindCSS', 'JavaScript', 'TypeScript'],
+        },
+        {
+          label: 'Cloud & DevOps',
+          subLabel: 'AWS and Docker',
+          skills: ['AWS EC2', 'AWS RDS', 'AWS S3', 'AWS Lambda (learning)', 'Docker (in training)', 'Containers', 'Images', 'Volumes', 'Logs'],
+        },
+        {
+          label: 'Databases',
+          subLabel: 'Persistence and caching',
+          skills: ['PostgreSQL', 'MySQL', 'TypeORM', 'Prisma', 'Redis'],
+        },
+        {
+          label: 'Tools and methodologies',
+          subLabel: 'How I work',
+          skills: ['Git', 'GitHub', 'Scrum', 'Azure DevOps', 'SDLC', 'Code Reviews', 'Testing'],
+        },
       ],
     },
     experience: {
       heading: 'Experience',
-      subtitle: 'Professional journey with concrete results',
+      subtitle: 'Professional journey as a Full-Stack developer',
       items: [
         {
-          role: 'Full Stack Developer',
-          company: 'TraditumSA',
-          year: '2024 – Present',
-          impact:
-            'Development and maintenance of web applications, contributing to the continuous improvement of internal processes, operational decisions and customer satisfaction.',
+          role: 'Full-Stack Developer',
+          company: 'Traditum S.A',
+          year: 'Nov 2024 – Present',
+          highlights: [
+            'Design of microservices architecture and REST APIs with .NET and Node.js, ensuring data integrity in high-demand environments.',
+            'Use of Next.js to handle both front end and back end in a single project.',
+            'Active participation in code reviews and test writing to keep the codebase healthy.',
+            'Collaborative work under SDLC in agile environments (Scrum + Azure DevOps).',
+          ],
         },
         {
-          role: 'Freelancer',
-          company: 'Own projects',
+          role: 'Full-Stack Developer',
+          company: 'Freelance Projects',
           year: '2024 – Present',
-          impact:
-            'Implementation of custom solutions for clients, achieving 100% satisfaction on every delivery.',
+          highlights: [
+            'Development of modern interfaces with React, Next.js, TailwindCSS, Vite and TypeScript.',
+            'API consumption with Axios and Fetch, and state management with Hooks and Context API.',
+            'Integration of routing, dynamic forms, validations, dashboards and data visualizations.',
+            'Backend development with Node.js and Express, including session and cookie handling.',
+          ],
         },
+      ],
+    },
+    education: {
+      heading: 'Education',
+      subtitle: 'Studies and languages',
+      languagesLabel: 'Languages',
+      items: [
+        { title: 'AI Engineer', institution: 'Scrimba', year: '2026 – Present' },
+        {
+          title: 'DevOps with Docker',
+          year: 'In progress',
+          note: 'Containers, images, volumes and logs.',
+        },
+        { title: 'Systems Analyst', institution: 'IESXXI', year: '2023 – 2026' },
+        {
+          title: 'Web Development with React',
+          institution: 'CoderHouse',
+          year: 'Mar 2022 – Oct 2022',
+          note: 'Intensive program of over 600 hours: HTML, CSS, JavaScript, React, Git and Firebase.',
+        },
+      ],
+      languages: [
+        { name: 'Spanish', level: 'Native' },
+        { name: 'English', level: 'B2' },
       ],
     },
     contact: {
@@ -225,6 +335,8 @@ export const translations = {
       viewProjects: 'View projects',
     },
     footer: {
+      thanks: 'Thanks for visiting my portfolio.',
+      backToTop: 'Back to top',
       copyright: '© 2026 Brian. All rights reserved.',
     },
   },
