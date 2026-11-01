@@ -62,6 +62,11 @@ export const translations = {
           description: 'Sitio de un hotel boutique con habitaciones, servicios y ubicación.',
           impact: 'Consultas de disponibilidad directas por WhatsApp, sin intermediarios.',
         },
+        {
+          name: 'El Mate',
+          description: 'Tienda online de productos materos con catálogo por categorías y arquitectura modular.',
+          impact: 'Carrito de compras con pedidos que se confirman por WhatsApp.',
+        },
       ],
     },
     skills: {
@@ -227,6 +232,11 @@ export const translations = {
           name: 'Posada Los Plátanos',
           description: 'Website for a boutique hotel with rooms, services and location.',
           impact: 'Direct availability inquiries through WhatsApp, with no middlemen.',
+        },
+        {
+          name: 'El Mate',
+          description: 'Online store for mate products with a categorized catalog and modular architecture.',
+          impact: 'Shopping cart with orders confirmed through WhatsApp.',
         },
       ],
     },

@@ -4,20 +4,29 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import { SectionHeading } from './SectionHeading';
 
-const projectTiles = ['bg-[#f6e6d8]', 'bg-[#ffc8bd]', 'bg-[#c9efa9]', 'bg-[#b9c8ff]'];
-const projectImages = ['/projects/explain-my-code.jpg', '/projects/rrhh.jpg', '/projects/terruno-web.jpg', '/projects/posada.jpg'];
-const projectPanels: (string | null)[] = [null, null, '/projects/terruno-admin.jpg', null];
+const projectTiles = ['bg-[#f6e6d8]', 'bg-[#ffc8bd]', 'bg-[#c9efa9]', 'bg-[#b9c8ff]', 'bg-[#e8edf6]'];
+const projectImages = ['/projects/explain-my-code.jpg', '/projects/rrhh.jpg', '/projects/terruno-web.jpg', '/projects/posada.jpg', '/projects/el-mate.jpg'];
+const projectPanels: (string | null)[] = [null, null, '/projects/terruno-admin.jpg', null, null];
+const projectSpans = [
+  'lg:col-span-2',
+  'lg:col-span-2',
+  'lg:col-span-2',
+  'lg:col-span-2 lg:col-start-2',
+  'md:col-span-2 lg:col-span-2',
+];
 const projectStacks = [
   ['Node.js', 'Express', 'OpenAI API', 'SQLite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
   ['React', 'TailwindCSS', 'JavaScript', 'Next.js', 'TypeScript', 'Railway', 'MongoDB'],
   ['Next.js', 'React', 'TailwindCSS', 'Node.js'],
   ['Next.js', 'React', 'TailwindCSS', 'Node.js'],
+  ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
 ];
 const projectLinks: { demo: string; code?: string }[] = [
   { demo: 'https://explain-my-code-green.vercel.app/#', code: 'https://github.com/brian-h2/ExplainMyCode' },
   { demo: 'https://ceciliamentarrhh.com/', code: 'https://github.com/brian-h2/Aplicacion-RRHH' },
   { demo: 'https://elterrunoalmacen.com.ar/' },
   { demo: 'https://posada-los-platanos-teal.vercel.app/' },
+  { demo: 'https://el-mate.vercel.app/' },
 ];
 
 export function Projects() {
@@ -33,7 +42,7 @@ export function Projects() {
       {/* Grid */}
       <div
         ref={gridRef as React.RefObject<HTMLDivElement>}
-        className="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6"
       >
         {t.items.map((project, index) => {
           const panel = projectPanels[index];
@@ -41,7 +50,7 @@ export function Projects() {
           return (
             <article
               key={project.name}
-              className={`group flex flex-col anim-fade-up ${index % 2 === 1 ? 'anim-delay-150' : ''} ${gridVisible ? 'is-visible' : ''}`}
+              className={`group flex flex-col anim-fade-up ${projectSpans[index]} ${index % 3 === 1 ? 'anim-delay-150' : index % 3 === 2 ? 'anim-delay-300' : ''} ${gridVisible ? 'is-visible' : ''}`}
             >
               {/* Pastel tile */}
               <div className={`${projectTiles[index]} relative flex items-center justify-center p-6`}>
