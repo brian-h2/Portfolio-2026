@@ -1,32 +1,23 @@
-import { Bot, Briefcase, ExternalLink, Github, Package, Scissors, Wrench } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import { SectionHeading } from './SectionHeading';
 
-const projectIcons = [Bot, Briefcase, Scissors, Package, Wrench];
-const projectTiles = ['bg-[#f6e6d8]', 'bg-[#ffc8bd]', 'bg-[#e8edf6]', 'bg-[#c9efa9]', 'bg-[#b9c8ff]'];
-const projectImages = ['/projects/explain-my-code.jpg', '/projects/rrhh.jpg', null, null, null];
-const projectSpans = [
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-2 lg:col-start-2',
-  'md:col-span-2 lg:col-span-2',
-];
+const projectTiles = ['bg-[#f6e6d8]', 'bg-[#ffc8bd]', 'bg-[#c9efa9]', 'bg-[#b9c8ff]'];
+const projectImages = ['/projects/explain-my-code.jpg', '/projects/rrhh.jpg', '/projects/terruno-web.jpg', '/projects/posada.jpg'];
+const projectPanels: (string | null)[] = [null, null, '/projects/terruno-admin.jpg', null];
 const projectStacks = [
-  ['Node.js', 'Express', 'OpenAI API', 'SQL Lite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
+  ['Node.js', 'Express', 'OpenAI API', 'SQLite', 'WebSockets', 'React', 'Next.js', 'TypeScript'],
   ['React', 'TailwindCSS', 'JavaScript', 'Next.js', 'TypeScript', 'Railway', 'MongoDB'],
-  ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'React'],
-  ['Node.js', 'Express', 'MongoDB', 'React', 'REST API'],
-  ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'React'],
+  ['Next.js', 'React', 'TailwindCSS', 'Node.js'],
+  ['Next.js', 'React', 'TailwindCSS', 'Node.js'],
 ];
-const projectLinks = [
+const projectLinks: { demo: string; code?: string }[] = [
   { demo: 'https://explain-my-code-green.vercel.app/#', code: 'https://github.com/brian-h2/ExplainMyCode' },
   { demo: 'https://ceciliamentarrhh.com/', code: 'https://github.com/brian-h2/Aplicacion-RRHH' },
-  { demo: 'https://barber-saa-s-one.vercel.app/', code: 'https://github.com/fmbpartnersorg/BarberSaaS' },
-  { demo: 'https://sistema-modular-de-ventas-avaporu.vercel.app/login', code: 'https://github.com/brian-h2/Sistema-modular-de-ventas-AVAPORU' },
-  { demo: 'https://mecanicsaas.vercel.app/', code: 'https://github.com/fmbpartnersorg/mecanicsaas' },
+  { demo: 'https://elterrunoalmacen.com.ar/' },
+  { demo: 'https://posada-los-platanos-teal.vercel.app/' },
 ];
 
 export function Projects() {
@@ -42,33 +33,34 @@ export function Projects() {
       {/* Grid */}
       <div
         ref={gridRef as React.RefObject<HTMLDivElement>}
-        className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6"
+        className="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {t.items.map((project, index) => {
-          const Icon = projectIcons[index];
-          const image = projectImages[index];
+          const panel = projectPanels[index];
+          const codeLink = projectLinks[index].code;
           return (
             <article
               key={project.name}
-              className={`group flex flex-col anim-fade-up ${projectSpans[index]} ${index % 3 === 1 ? 'anim-delay-150' : index % 3 === 2 ? 'anim-delay-300' : ''} ${gridVisible ? 'is-visible' : ''}`}
+              className={`group flex flex-col anim-fade-up ${index % 2 === 1 ? 'anim-delay-150' : ''} ${gridVisible ? 'is-visible' : ''}`}
             >
               {/* Pastel tile */}
-              <div className={`${projectTiles[index]} flex items-center justify-center p-6`}>
+              <div className={`${projectTiles[index]} relative flex items-center justify-center p-6`}>
                 <div className="w-full max-w-md overflow-hidden rounded-sm bg-white shadow-2xl shadow-black/30 transition-transform duration-300 group-hover:-translate-y-2">
                   <div className="flex items-center gap-1.5 bg-neutral-200 px-3 py-2">
                     <span className="w-2 h-2 rounded-full bg-brand" />
                     <span className="w-2 h-2 rounded-full bg-neutral-400" />
                     <span className="w-2 h-2 rounded-full bg-neutral-400" />
                   </div>
-                  {image ? (
-                    <img src={image} alt={project.name} loading="lazy" className="w-full aspect-video object-cover object-top" />
-                  ) : (
-                    <div className="w-full aspect-video bg-ink flex flex-col items-center justify-center gap-3">
-                      <Icon className="w-10 h-10 text-brand-soft" />
-                      <span className="font-display text-2xl uppercase tracking-wide text-white">{project.name}</span>
-                    </div>
-                  )}
+                  <img src={projectImages[index]} alt={project.name} loading="lazy" className="w-full aspect-video object-cover object-top" />
                 </div>
+                {panel && (
+                  <img
+                    src={panel}
+                    alt={`${project.name} admin`}
+                    loading="lazy"
+                    className="absolute right-3 bottom-3 w-1/2 rounded-sm shadow-2xl shadow-black/40 transition-transform duration-300 group-hover:-translate-y-1"
+                  />
+                )}
               </div>
 
               {/* Caption */}
@@ -91,15 +83,17 @@ export function Projects() {
                     <ExternalLink className="w-4 h-4" />
                     {t.demo}
                   </a>
-                  <a
-                    href={projectLinks[index].code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-display text-sm uppercase tracking-widest text-neutral-300 hover:text-white transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    {t.code}
-                  </a>
+                  {codeLink && (
+                    <a
+                      href={codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 font-display text-sm uppercase tracking-widest text-neutral-300 hover:text-white transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                      {t.code}
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
